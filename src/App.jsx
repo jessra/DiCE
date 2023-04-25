@@ -1,9 +1,11 @@
 import { useState } from 'react'
+import Inicio from "./views/Inicio";
 
 function App() {
 
   return (
     <>
+      <Inicio/>
     </>
   )
 }
