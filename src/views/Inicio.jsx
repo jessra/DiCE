@@ -5,8 +5,9 @@ import ClipLoader from "react-spinners/ClipLoader";
 
 export default function Inicio() {
 	const [busqueda, setbusqueda] = useState('');
+	const [tipografia, settipografia] = useState('Caveat');
 	let debounced;
-
+	
 	const override = {
 		display: "flex",
 		margin: "0 auto",
@@ -45,7 +46,8 @@ export default function Inicio() {
 	}
 
 	return (
-		<section className="h-screen">
+		// <section className={`h-screen font-['Sigmar']`}>
+		<section className={`h-screen font-['${tipografia}']`}>
 			<div className="flex justify-end m-4">
 				<SwitchDarkMode />
 			</div>
@@ -62,6 +64,20 @@ export default function Inicio() {
 					<span className="block">Dictionary</span>
 				</p>
 			</header>
+			<section className="grid md:grid-cols-2 mx-3 mt-6 max-w-md gap-4 md:mx-auto">
+				<select 
+					name="font" 
+					id="font"
+          onClick={(e) => {
+						settipografia(e.target.value);
+					}}>
+					<option value="Caveat">Caveat</option>
+					<option value="Chivo_Mono">Chivo</option>
+					<option value="Concert_One">Concert</option>
+					<option value="Pacifico">Pacifico</option>
+					<option value="Sigmar">Sigmar</option>
+				</select>
+			</section>
 			<section className="grid md:grid-cols-2 mx-3 mt-6 max-w-md gap-4 md:mx-auto">
 				<div>
 					<label htmlFor="busqueda" className="sr-only">
