@@ -112,9 +112,22 @@ export default function Inicio() {
 			</section>
 			{ data.map((d, id) => (
 				<article key={id} className="border-t border-gray-600 dark:border-indigo-700 mt-9 mx-3 md:w-2/4 md:mx-auto">
-					<p className="mt-3 text-3xl font-semibold text-gray-900 dark:text-gray-200">
+					<div className="mt-3 text-3xl font-semibold text-[#fab54c]">
 						{d.word}
-					</p>
+					</div>
+					<div className="mt-3 text-2xl font-semibold text-gray-900 dark:text-gray-200">
+						phonetics
+						{d.phonetics.map((p, ip) => (
+							<p key={ip}>
+								{p.audio ? (
+								<audio controls>
+									<source src={p.audio} type="audio/mp3"/>
+									<source src={p.audio} type="audio/ogg"/>
+								</audio>) 
+								: (<></>)}
+							</p>
+						))}
+					</div>
 					{ d.meanings.map((m, im) => (
 						<div key={im}>
 							<p className="mt-3 text-2xl font-semibold text-gray-900 dark:text-gray-200">
