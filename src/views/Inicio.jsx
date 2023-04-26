@@ -1,11 +1,18 @@
 import { useQuery } from '@tanstack/react-query';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import SwitchDarkMode from '../components/SwitchDarkMode';
+import ClipLoader from "react-spinners/ClipLoader";
 
 export default function Inicio() {
 	const [busqueda, setbusqueda] = useState('');
 	let debounced;
 
+	const override = {
+		display: "flex",
+		margin: "0 auto",
+		borderColor: "#fab54c",
+	};
+	
   const consultaApi = async() => {
 		if (!busqueda) return {"title": "Ingresa una palabra a buscar", "message": "Recuerda que las palabras válidas son en inglés"};
     const url = "https://api.dictionaryapi.dev/api/v2/entries/en/"
@@ -23,9 +30,8 @@ export default function Inicio() {
 		if (debounced) clearTimeout(debounced);
 		debounced = setTimeout(() => {
 			query.refetch()
-		}, 800);
+		}, 1000);
 	}
-
 	function autoComa(array) {
 		let modificado = ''
 		array.forEach((x, i) => {
@@ -82,7 +88,7 @@ export default function Inicio() {
 					Busca
 				</button>
 			</section>
-			{ query.data && !query.data.title ? (
+			{ query.data && !query.data.title && !query.isFetching ? (
 				<>
 					{ query.data.map((d, id) => (
 						<article key={id} className="border-t border-gray-600 dark:border-indigo-700 mt-9 mx-3 md:w-2/4 md:mx-auto">
@@ -146,6 +152,15 @@ export default function Inicio() {
 					{query.data && query.data.message ? query.data.message : ''}
 				</article>
 			)}
+
+			<ClipLoader
+        color="#fab54c"
+        loading={query.isFetching}
+        cssOverride={override}
+        size={150}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      />
 		</section>
 	);
 }
