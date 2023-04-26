@@ -7,7 +7,6 @@ export default function Inicio() {
 	const [busqueda, setbusqueda] = useState('');
 	const [tipografia, settipografia] = useState('Caveat');
 	let debounced;
-	
 	const override = {
 		display: "flex",
 		margin: "0 auto",
@@ -46,7 +45,6 @@ export default function Inicio() {
 	}
 
 	return (
-		// <section className={`h-screen font-['Sigmar']`}>
 		<section className={`h-screen font-['${tipografia}']`}>
 			<div className="flex justify-end m-4">
 				<SwitchDarkMode />
@@ -59,7 +57,7 @@ export default function Inicio() {
 						alt=""
 					/>
 				</div>
-				<p className="p-2 my-6">
+				<p className="p-2 my-6 dark:text-white">
 					DiCE
 					<span className="block">Dictionary</span>
 				</p>
@@ -161,7 +159,7 @@ export default function Inicio() {
 					))}
 				</>
 			) : (
-				<article className="border-t border-gray-600 dark:border-indigo-700 mt-9 mx-3 md:w-2/4 md:mx-auto">
+				<article className="border-t border-gray-600 dark:border-indigo-700 dark:text-white mt-9 mx-3 md:w-2/4 md:mx-auto">
 					<div className="mt-3 text-3xl font-semibold text-[#fab54c]">
 						{query.data && query.data.title ? query.data.title : ''}
 					</div>
